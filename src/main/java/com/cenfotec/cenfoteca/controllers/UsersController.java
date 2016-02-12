@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cenfotec.cenfoteca.contracts.UsersRequest;
 import com.cenfotec.cenfoteca.contracts.UsersResponse;
+import com.cenfotec.cenfoteca.pojo.UsuarioPOJO;
 import com.cenfotec.cenfoteca.services.UsersServiceInterface;
 
 
@@ -67,6 +69,27 @@ public class UsersController {
 		
 	}
 	
+	
+	@RequestMapping(value ="/alquilar", method = RequestMethod.POST)
+	public UsersResponse alquilar(@RequestParam("idUsuario") int idUsuario,
+								  @RequestParam("idAlquiler") int idAlquiler){	
+		
+		UsersResponse us = new UsersResponse();
+
+		Boolean state = false;
+		
+		if(idUsuario >= -1 && idAlquiler >= -1){
+			
+		state = usersService.rentItem(idUsuario, idAlquiler);
+			
+		}
+		
+		if(state){
+			us.setCode(200);
+			us.setCodeMessage("item rented succesfully");
+		}
+		return us;	
+	}
 
 	
 	

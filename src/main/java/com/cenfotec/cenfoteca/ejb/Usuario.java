@@ -42,6 +42,7 @@ public class Usuario implements Serializable {
 			@JoinColumn(name="Alquiler_idAlquiler")
 			}
 		)
+	
 	private List<Alquiler> alquilers;
 
 	public Usuario() {

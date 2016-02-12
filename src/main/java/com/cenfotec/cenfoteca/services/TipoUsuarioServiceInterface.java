@@ -11,7 +11,6 @@ public interface TipoUsuarioServiceInterface {
 	List<TipoUsuarioPOJO> getAll();
 	TipoUsuario getTipoUsuarioById(int idTipoUsuario);
 	Boolean saveUserType(UserTypeRequest ut);
-	Boolean editUserType(UserTypeRequest ut); 
 	Boolean deleteUserType(UserTypeRequest ut); 
 	
 }

@@ -11,15 +11,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import com.cenfotec.cenfoteca.contracts.UsersRequest;
+import com.cenfotec.cenfoteca.ejb.Alquiler;
 import com.cenfotec.cenfoteca.ejb.Usuario;
 import com.cenfotec.cenfoteca.pojo.AlquilerPOJO;
 import com.cenfotec.cenfoteca.pojo.UsuarioPOJO;
+import com.cenfotec.cenfoteca.repositories.RentRepository;
 import com.cenfotec.cenfoteca.repositories.UsersRepository;
 
 @Service
 public class UsersService implements UsersServiceInterface{
 
 	@Autowired private UsersRepository usersRepository;
+	@Autowired private RentRepository rentRepository;
+	@Autowired private RentServiceInterface rs;
+
 	
 	@Override
 	@Transactional
@@ -83,5 +88,23 @@ public class UsersService implements UsersServiceInterface{
 		dto.setAlquileres(alquileres);
 		dtos.add(dto);
 		return dtos;
+	}
+
+	
+	@Override
+	@Transactional
+	public Boolean rentItem(int idUser, int idItem) {
+
+		Usuario user = usersRepository.findOne(idUser);
+		Alquiler item = rs.getAlquilerById(idItem);
+
+		List <Alquiler> rents = user.getAlquilers();
+		rents.add(item);
+		
+		user.setAlquilers(rents);
+		
+		Usuario nuser = usersRepository.save(user);
+		
+		return (nuser == null) ? false : true;
 	}
 }

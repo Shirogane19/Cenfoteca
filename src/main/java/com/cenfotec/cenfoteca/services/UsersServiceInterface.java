@@ -9,6 +9,7 @@ public interface UsersServiceInterface {
 
 	List<UsuarioPOJO> getAll(UsersRequest ur);
 	List<UsuarioPOJO> getAllByName(UsersRequest ur);
-	Boolean saveUser(UsersRequest ur);
 	List<UsuarioPOJO> getAlquileres(UsersRequest ur);
+	Boolean saveUser(UsersRequest ur);
+	Boolean rentItem(int idUser, int idItem);
 }

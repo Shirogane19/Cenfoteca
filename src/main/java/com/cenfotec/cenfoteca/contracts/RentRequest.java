@@ -1,17 +1,32 @@
 package com.cenfotec.cenfoteca.contracts;
 
+import com.cenfotec.cenfoteca.pojo.AlquilerPOJO;
+
 public class RentRequest {
 	
 	private String name;
 	private String descripcion;
+	private AlquilerPOJO alquiler;
 	
 	public RentRequest(String name) {
 		super();
 		this.name = name;
 	}
 
+	public RentRequest() {
+		super();
+	}
+	
 	public String getName() {
 		return name;
+	}
+
+	public AlquilerPOJO getAlquiler() {
+		return alquiler;
+	}
+
+	public void setAlquiler(AlquilerPOJO alquiler) {
+		this.alquiler = alquiler;
 	}
 
 	public void setName(String name) {
@@ -25,5 +40,7 @@ public class RentRequest {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	
 	
 }

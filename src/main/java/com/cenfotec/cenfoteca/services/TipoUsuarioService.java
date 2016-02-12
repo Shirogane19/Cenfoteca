@@ -44,29 +44,25 @@ public class TipoUsuarioService implements TipoUsuarioServiceInterface{
 	@Transactional
 	public Boolean saveUserType(UserTypeRequest ut) {
 		
-		TipoUsuario userType = new TipoUsuario();
-		BeanUtils.copyProperties(ut.getUserType(), userType);
-		TipoUsuario nuserT = tipoUsuarioRepository.save(userType);
+		TipoUsuario newUserType = new TipoUsuario();
+		TipoUsuario nuserT = null;
+		BeanUtils.copyProperties(ut.getUserType(), newUserType);	
 		
+		if(ut.getUserType().getIdTipoUsuario() <= -1){		
+	
+			nuserT = tipoUsuarioRepository.save(newUserType);
+			
+		}else{		
+			TipoUsuario oldUserType = getTipoUsuarioById(newUserType.getIdTipoUsuario());
+			
+			oldUserType.setTipo(newUserType.getTipo());
+			nuserT = tipoUsuarioRepository.save(oldUserType);	
+		}
+
 		return (nuserT == null) ? false : true;
 		
 	}
 
-	@Override
-	@Transactional
-	public Boolean editUserType(UserTypeRequest ut) {
-		
-		TipoUsuario newUserType = new TipoUsuario();
-		BeanUtils.copyProperties(ut.getUserType(), newUserType);
-		
-		TipoUsuario oldUserType = getTipoUsuarioById(newUserType.getIdTipoUsuario());
-		
-		oldUserType.setTipo(newUserType.getTipo());
-		TipoUsuario euserT = tipoUsuarioRepository.save(oldUserType);
-		
-		return (euserT == null) ? false : true;
-
-	}
 
 	@Override
 	@Transactional

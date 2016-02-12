@@ -38,35 +38,21 @@ public class TipoUsuarioController {
 	}
 	
 	
-	@RequestMapping(value ="/create", method = RequestMethod.POST)
+	@RequestMapping(value ="/save", method = RequestMethod.POST)
 	public TipoUsuarioResponse create(@RequestBody UserTypeRequest ut){	
 		
 		TipoUsuarioResponse userType = new TipoUsuarioResponse();
 		Boolean state = tipoUsuarioService.saveUserType(ut);
 	
-		if(!state){
-			userType.setCode(200);
-			userType.setCodeMessage("user type created succesfully");
-		}
-		return userType;
-		
-	}
-	
-	@RequestMapping(value ="/edit", method = RequestMethod.POST)
-	public TipoUsuarioResponse edit(@RequestBody UserTypeRequest ut){
-		
-		TipoUsuarioResponse userType = new TipoUsuarioResponse();
-		Boolean state = tipoUsuarioService.editUserType(ut);
-		
 		if(state){
 			userType.setCode(200);
-			userType.setCodeMessage("user type modified succesfully");
+			userType.setCodeMessage("user type saved succesfully");
 		}
-		
 		return userType;
 		
 	}
 	
+
 	@RequestMapping(value ="/delete", method = RequestMethod.DELETE)
 	public void delete(@RequestBody UserTypeRequest ut){
 		
