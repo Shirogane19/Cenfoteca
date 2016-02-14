@@ -27,7 +27,7 @@ public class TipoUsuarioController {
 	@Autowired private TipoUsuarioServiceInterface tipoUsuarioService;
 	@Autowired private HttpServletRequest request;
 	
-	@RequestMapping(value ="/getAll", method = RequestMethod.GET)
+	@RequestMapping(value ="/getAll", method = RequestMethod.POST)
 	public TipoUsuarioResponse getAll(){	
 			
 		TipoUsuarioResponse response = new TipoUsuarioResponse();

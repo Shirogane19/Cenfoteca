@@ -1,10 +1,140 @@
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
 <div class="container">
-    <h3 class="text-center">Usuarios</h3>
-    <hr>
+	<div class="container">
+	    <h3 class="text-center">Usuarios</h3>
+	    <hr>
+	</div>
+
+	<div class="container">
+		<div class="row">
+		    <table class="table table-striped custab">
+			    <thead>
+			        <tr>
+			            <th>ID</th>
+			            <th>Name</th>
+			            <th>LastName</th>
+			            <th>Password</th>
+			            <th>Email</th>
+			            <th>Type</th>
+
+			        </tr>
+			    </thead>
+			      	<tr ng-repeat="u in usuarios ">
+			      		<td><span ng-bind="u.idUsuario"></span></td>
+			            <td><span ng-bind="u.firstname"></span></td>
+			            <td><span ng-bind="u.lastname"></span></td>
+			            <td><span ng-bind="u.password"></span></td>
+			            <td><span ng-bind="u.email"></span></td>
+			            <td><span ng-bind="u.tipoUsuario.tipo"></span></td>
+			        </tr>
+			 </table>
+			 <br>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="container">
+	<div class="container">
+	    <h3 class="text-center">Tipos de Usuarios</h3>
+	    <hr>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+		    <table class="table table-striped custab">
+			    <thead>
+			    	<a href="#" class="btn btn-success btn-xs pull-right"><b>+</b> Add User Type</a>
+			        <tr>
+			            <th>ID</th>
+			            <th>Type</th>
+			            <th>Action</th>
+			            <th>Action</th>
+			        </tr>
+			    </thead>
+			      	<tr ng-repeat="t in tipoUsuarios ">
+			            <td><span ng-bind="t.idTipoUsuario"></span></td>
+			            <td><span ng-bind="t.tipo"></span></td>
+			            <td><button type="button" ng-click="" class="btn btn-warning">Edit</button> </td>
+			            <td><button type="button" ng-click="" class="btn btn-danger">Delete</button> </td>
+			        </tr>
+			 </table>
+			 <br>
+		</div>
+	</div>
+</div>
+
+
+<div class="container">
+	<div class="container">
+	    <h3 class="text-center">Items</h3>
+	    <hr>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+		    <table class="table table-striped custab">
+			    <thead>
+			        <a href="#" class="btn btn-success btn-xs pull-right"><b>+</b> Add Item</a>
+			        <tr>
+			            <th>ID</th>
+			            <th>Item</th>
+			            <th>Description</th>
+			            <th>Image URL</th>
+			            <th>Action</th>
+			            <th>Action</th>
+			        </tr>
+			    </thead>
+			      	<tr ng-repeat="i in items ">
+			            <td><span ng-bind="i.idAlquiler"></span></td>
+			            <td><span ng-bind="i.name"></span></td>
+			            <td><span ng-bind="i.description"></span></td>
+			            <td><span ng-bind="i.image"></span></td>
+			            <td><button type="button" ng-click="" class="btn btn-warning">Edit</button> </td>
+			            <td><button type="button" ng-click="" class="btn btn-danger">Delete</button> </td>
+			        </tr>
+			 </table>
+			 <br>
+		</div>
+	</div>
 </div>
 
 <div class="container">
-	<div class="row">
-		 <div ui-grid="{ data: usuarios }" class="myGrid"></div>
+	<div class="container">
+	    <h3 class="text-center">Rents</h3>
+	    <hr>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+    <table class="table table-striped custab">
+    <thead>
+        <a href="#" class="btn btn-success btn-xs pull-right"><b>+</b> Add Rent</a>
+        <tr>
+            <th>ID</th>
+            <th>Item</th>
+            <th>User</th>
+            <th>Is Returned</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+      	<tr ng-repeat="r in rents">
+            <td><span ng-bind="r.idUsuarioHasAlquiler"></span></td>
+            <td><span ng-bind="r.alquiler.name"></span></td>
+            <td><span ng-bind="r.usuario.firstname"></span></td>
+            <td><span ng-bind="r.estado_renta"></span></td>
+            <td><button type="button" ng-click="" class="btn btn-primary">Return</button> </td>
+        </tr>
+    </table>
+		</div>
 	</div>
 </div>
+
+

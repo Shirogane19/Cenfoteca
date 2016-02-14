@@ -29,7 +29,7 @@ public class RentController {
 	@Autowired private TipoAlquilerServiceInterface tipoAlquilerService;
 	@Autowired private RentServiceInterface rentService;
 	
-	@RequestMapping(value ="/getAll", method = RequestMethod.GET)
+	@RequestMapping(value ="/getAll", method = RequestMethod.POST)
 	public RentResponse getAll(){
 		
 		RentResponse response = new RentResponse();

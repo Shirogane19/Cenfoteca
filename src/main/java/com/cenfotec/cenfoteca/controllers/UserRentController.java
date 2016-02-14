@@ -1,8 +1,6 @@
 package com.cenfotec.cenfoteca.controllers;
 
 
-import java.security.acl.Owner;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +51,6 @@ public class UserRentController {
 		UserRentResponse us = new UserRentResponse();
 		Boolean state = userRentService.deleteUserRent(idAlquiler);
 	
-
-		
 		if(state){
 			us.setCode(200);
 			us.setCodeMessage("item returned succesfully");

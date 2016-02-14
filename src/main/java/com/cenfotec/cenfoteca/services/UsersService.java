@@ -45,7 +45,7 @@ public class UsersService implements UsersServiceInterface{
 		users.stream().forEach(u -> {
 			UsuarioPOJO dto = new UsuarioPOJO();
 			BeanUtils.copyProperties(u,dto);
-		//	dto.setPassword("");  //Aqui esconde la password
+			dto.setPassword("*****");  //Aqui esconde la password
 			uiUsers.add(dto);
 		});	
 		return uiUsers;

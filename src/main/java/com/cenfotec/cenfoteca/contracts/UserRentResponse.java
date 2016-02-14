@@ -12,7 +12,7 @@ public class UserRentResponse extends BaseResponse{
 		super();
 	}
 	
-	public List<UsuarioHasAlquilerPOJO> getUsuarRent() {
+	public List<UsuarioHasAlquilerPOJO> getUserRent() {
 		return userRent;
 	}
 
