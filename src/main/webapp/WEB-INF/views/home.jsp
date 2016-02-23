@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Proyecto 3 | To Do List</title>
+  <title>Proyecto 3 | Cenfoteca</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="resources/bower_components/html5-boilerplate/dist/css/normalize.css">
