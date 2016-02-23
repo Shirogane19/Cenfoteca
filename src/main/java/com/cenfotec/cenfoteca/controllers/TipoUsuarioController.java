@@ -53,7 +53,7 @@ public class TipoUsuarioController {
 	}
 	
 
-	@RequestMapping(value ="/delete", method = RequestMethod.DELETE)
+	@RequestMapping(value ="/delete", method = RequestMethod.POST)
 	public void delete(@RequestBody UserTypeRequest ut){
 		
 		TipoUsuarioResponse userType = new TipoUsuarioResponse();

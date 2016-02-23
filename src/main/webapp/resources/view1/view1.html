@@ -43,13 +43,36 @@
 	    <h3 class="text-center">Tipos de Usuarios</h3>
 	    <hr>
 	</div>
+	
+	<div class="container" name = "myUserTypeForm" ng-show="onPoint">
+		<form name = "myUserTypeForm">
+			<label class="control-label">User Type Name</label>
+		    <div class="row"><!---->
+		        <div class="col-xs-6 col-sm-3">
+		            <input type="text" ng-model="userType.name" placeholder="User Type" class="form-control"  ng-required="true" >
+		            <p class="help-block"></p>
+		        </div>
+		    </div><!---->
+		    
+		    <div class="control-group"><!---->
+			    <!-- Button -->
+			    <div class="controls">
+			      <a class="btn icon-btn btn-success" ng-disabled="myUserTypeForm.$invalid" ng-click="myUserTypeForm.$valid && saveTipoUsuario()">
+				  <span class="glyphicon btn-glyphicon glyphicon-save img-circle text-success"></span>Save</a>
+	
+				  <a class="btn icon-btn btn-danger" ng-click="closeFormUserType()">
+				  <span class="glyphicon btn-glyphicon glyphicon-share-alt img-circle text-success"></span>Cancel</a>
+			    </div>
+		    </div><!---->
+	    </form>
+	</div>
 
 
 	<div class="container">
 		<div class="row">
 		    <table class="table table-striped custab">
 			    <thead>
-			    	<a href="#" class="btn btn-success btn-xs pull-right"><b>+</b> Add User Type</a>
+			    	<a class="btn btn-success btn-xs pull-right" ng-click="openFormUserType()" ><b>+</b> Add User Type</a>
 			        <tr>
 			            <th>ID</th>
 			            <th>Type</th>
@@ -60,8 +83,8 @@
 			      	<tr ng-repeat="t in tipoUsuarios ">
 			            <td><span ng-bind="t.idTipoUsuario"></span></td>
 			            <td><span ng-bind="t.tipo"></span></td>
-			            <td><button type="button" ng-click="" class="btn btn-warning">Edit</button> </td>
-			            <td><button type="button" ng-click="" class="btn btn-danger">Delete</button> </td>
+			            <td><button type="button" ng-click="showUserTypeToEdit(t)" class="btn btn-warning">Edit</button> </td>
+			            <td><button type="button" ng-click="deleteTipoUsuario(t)" class="btn btn-danger">Delete</button> </td>
 			        </tr>
 			 </table>
 			 <br>
