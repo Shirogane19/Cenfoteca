@@ -21,7 +21,7 @@
 
 			        </tr>
 			    </thead>
-			      	<tr ng-repeat="u in usuarios ">
+			      	<tr ng-repeat="u in usuarios">
 			      		<td><span ng-bind="u.idUsuario"></span></td>
 			            <td><span ng-bind="u.firstname"></span></td>
 			            <td><span ng-bind="u.lastname"></span></td>
@@ -38,35 +38,30 @@
 
 
 
-<div class="container">
 	<div class="container">
-	    <h3 class="text-center">Tipos de Usuarios</h3>
-	    <hr>
-	</div>
-	
-	<div class="container" name = "myUserTypeForm" ng-show="onPoint">
-		<form name = "myUserTypeForm">
-			<label class="control-label">User Type Name</label>
-		    <div class="row"><!---->
-		        <div class="col-xs-6 col-sm-3">
-		            <input type="text" ng-model="userType.name" placeholder="User Type" class="form-control"  ng-required="true" >
-		            <p class="help-block"></p>
-		        </div>
-		    </div><!---->
-		    
-		    <div class="control-group"><!---->
-			    <!-- Button -->
-			    <div class="controls">
-			      <a class="btn icon-btn btn-success" ng-disabled="myUserTypeForm.$invalid" ng-click="myUserTypeForm.$valid && saveTipoUsuario()">
-				  <span class="glyphicon btn-glyphicon glyphicon-save img-circle text-success"></span>Save</a>
-	
-				  <a class="btn icon-btn btn-danger" ng-click="closeFormUserType()">
-				  <span class="glyphicon btn-glyphicon glyphicon-share-alt img-circle text-success"></span>Cancel</a>
-			    </div>
-		    </div><!---->
-	    </form>
-	</div>
+		<div class="container">
+		    <h3 class="text-center">Tipos de Usuarios</h3>
+		    <hr>
+		</div>
+		
+	<div class="container" ng-show="onPoint">
+	<div class="col-md-5">
+	    <div class="form-area">  
+	        <form role="form" name = "myUserTypeForm">
+	        <br style="clear:both">
+	                    <h3 style="margin-bottom: 25px; text-align: center;">Tipo Usuario</h3>
+	    				<div class="form-group">
+							<input type="text" class="form-control" ng-model="userType.name" placeholder="User Type" class="form-control"  ng-required="true" >
+						</div>
+	            
+	        <button type="button" class="btn btn-primary pull-right" ng-disabled="myUserTypeForm.$invalid" 
+	        		ng-click="myUserTypeForm.$valid && saveTipoUsuario()">Submit Form</button>
 
+	        <button type="button" class="btn btn-danger pull-left" ng-click="closeFormUserType()">Cancel</button>
+	        </form>
+	    </div>
+	</div>
+	</div>
 
 	<div class="container">
 		<div class="row">
@@ -99,28 +94,65 @@
 	    <hr>
 	</div>
 
+	<div class="container" ng-show="onPoint2">
+	<div class="col-md-5">
+	    <div class="form-area">  
+	        <form role="form" name = "myItemForm">
+	        <br style="clear:both">
+	                    <h3 style="margin-bottom: 25px; text-align: center;">Item</h3>
+	    				<div class="form-group">
+							<input type="text" class="form-control" ng-model="newItem.name" placeholder="Item name" 
+								   class="form-control"  ng-required="true" >
+						</div>
+	    				<div class="form-group">
+							<input type="text" class="form-control" ng-model="newItem.description" placeholder="Description" 
+								  class="form-control"  ng-required="true" >
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="newItem.url" placeholder="Image url" class="form-control"  ng-required="true" >
+						</div>	
+						<div ng-if = "!isCreating2" class="form-group">
+							<input type="text" class="form-control" ng-model="newItem.tipo" placeholder="Image url" 
+								  class="form-control"  disabled >
+						</div>							
+						<div class="form-group">
+						    <select ng-model="tipo" class="form-control">
+						      <option value="1">Book</option>
+						      <option value="2">Movie</option>
+						      <option value="3">Electronic Device</option>
+						    </select>
+						</div>
+
+	        <button type="button" class="btn btn-primary pull-right" ng-disabled="myItemForm.$invalid" 
+	        		ng-click="myItemForm.$valid && saveItem()">Submit Form</button>
+
+	        <button type="button" class="btn btn-danger pull-left" ng-click="closeFormItem()">Cancel</button>
+	        </form>
+	    </div>
+	</div>
+	</div>
 
 	<div class="container">
 		<div class="row">
 		    <table class="table table-striped custab">
 			    <thead>
-			        <a href="#" class="btn btn-success btn-xs pull-right"><b>+</b> Add Item</a>
+			        <a ng-click="openFormItem()" class="btn btn-success btn-xs pull-right"><b>+</b> Add Item</a>
 			        <tr>
 			            <th>ID</th>
 			            <th>Item</th>
 			            <th>Description</th>
-			            <th>Image URL</th>
+			            <th>Type</th>
 			            <th>Action</th>
 			            <th>Action</th>
 			        </tr>
 			    </thead>
-			      	<tr ng-repeat="i in items ">
+			      	<tr ng-repeat="i in items">
 			            <td><span ng-bind="i.idAlquiler"></span></td>
 			            <td><span ng-bind="i.name"></span></td>
 			            <td><span ng-bind="i.description"></span></td>
-			            <td><span ng-bind="i.image"></span></td>
-			            <td><button type="button" ng-click="" class="btn btn-warning">Edit</button> </td>
-			            <td><button type="button" ng-click="" class="btn btn-danger">Delete</button> </td>
+			            <td><span ng-bind="i.tipo"></span></td>
+			            <td><button type="button" ng-click="showItemToEdit(i)" class="btn btn-warning">Edit</button> </td>
+			            <td><button type="button" ng-click="deleteItem(i)" class="btn btn-danger">Delete</button> </td>
 			        </tr>
 			 </table>
 			 <br>
@@ -134,17 +166,47 @@
 	    <hr>
 	</div>
 
+	<div class="container" ng-show="onPoint3">
+	<div class="col-md-5">
+	    <div class="form-area">  
+	        <form role="form" name = "rentForm">
+	        <br style="clear:both">
+	                    <h3 style="margin-bottom: 25px; text-align: center;">Alquilar</h3>
+
+						<div class="form-group">
+						<label for="repeatSelect">Usuario: </label>
+						    <select id="repeatSelect" class="form-control" ng-model="usuario" required>
+						      <option ng-repeat="u in usuarios" value="{{u.idUsuario}}">{{u.firstname}} {{u.lastname}}</option>
+						    </select>
+						</div>
+						
+						<div class="form-group">
+						<label for="repeatSelect2">Item: </label>
+						    <select id="repeatSelect2" class="form-control" ng-model="item" required>
+						      <option ng-repeat="i in items" value="{{i.idAlquiler}}">{{i.name}}</option>
+						    </select>
+						</div>
+
+	        <button type="button" class="btn btn-primary pull-right" ng-disabled="rentForm.$invalid" 
+	        		ng-click="rentForm.$valid && rentItem()">Submit Form</button>
+
+	        <button type="button" class="btn btn-danger pull-left" ng-click="closeFormRent()">Cancel</button>
+	        </form>
+	    </div>
+	</div>
+	</div>
+
 
 	<div class="container">
 		<div class="row">
     <table class="table table-striped custab">
     <thead>
-        <a href="#" class="btn btn-success btn-xs pull-right"><b>+</b> Add Rent</a>
+        <a ng-click = "openFormRent()" class="btn btn-success btn-xs pull-right"><b>+</b> Add Rent</a>
         <tr>
             <th>ID</th>
             <th>Item</th>
             <th>User</th>
-            <th>Is Returned</th>
+            <th>Returned</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -153,7 +215,7 @@
             <td><span ng-bind="r.alquiler.name"></span></td>
             <td><span ng-bind="r.usuario.firstname"></span></td>
             <td><span ng-bind="r.estado_renta"></span></td>
-            <td><button type="button" ng-click="" class="btn btn-primary">Return</button> </td>
+            <td><button type="button" ng-click="returnItem(r)" class="btn btn-primary">Return</button> </td>
         </tr>
     </table>
 		</div>

@@ -15,7 +15,9 @@ import com.cenfotec.cenfoteca.ejb.UsuarioHasAlquiler;
 import com.cenfotec.cenfoteca.pojo.AlquilerPOJO;
 import com.cenfotec.cenfoteca.pojo.UsuarioHasAlquilerPOJO;
 import com.cenfotec.cenfoteca.pojo.UsuarioPOJO;
+import com.cenfotec.cenfoteca.repositories.RentRepository;
 import com.cenfotec.cenfoteca.repositories.RentUserRepository;
+import com.cenfotec.cenfoteca.repositories.UsersRepository;
 
 import javassist.expr.NewArray;
 
@@ -23,7 +25,8 @@ import javassist.expr.NewArray;
 public class UserRentService implements UserRentServiceInterface {
 
 	@Autowired private RentUserRepository userRentRepository;
-	
+	@Autowired private UsersRepository    userRepository;
+	@Autowired private RentRepository    itemRepository;
 	
 	private List<UsuarioHasAlquilerPOJO> generateUserRentDtos(List<UsuarioHasAlquiler> users){
 		List<UsuarioHasAlquilerPOJO> userRent = new ArrayList<UsuarioHasAlquilerPOJO>();
@@ -78,12 +81,11 @@ public class UserRentService implements UserRentServiceInterface {
 		UsuarioHasAlquiler newUserRent = new UsuarioHasAlquiler();
 		UsuarioHasAlquiler nuseR = new UsuarioHasAlquiler();
 		
-		BeanUtils.copyProperties(ut.getUserRent(), newUserRent);	
-		newUserRent.setAlquiler(new Alquiler());
-		newUserRent.setUsuario(new Usuario());
+		Usuario u = userRepository.findOne(ut.getUserRent().getIdUsuario());
+		Alquiler i = itemRepository.findOne(ut.getUserRent().getIdItem());
 		
-		BeanUtils.copyProperties(ut.getUserRent().getAlquiler(), newUserRent.getAlquiler());
-		BeanUtils.copyProperties(ut.getUserRent().getUsuario(),  newUserRent.getUsuario());
+		newUserRent.setAlquiler(i);
+		newUserRent.setUsuario(u);
 			
 		nuseR = userRentRepository.save(newUserRent);
 

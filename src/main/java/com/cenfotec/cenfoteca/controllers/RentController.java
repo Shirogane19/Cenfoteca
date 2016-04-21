@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cenfotec.cenfoteca.contracts.RentRequest;
 import com.cenfotec.cenfoteca.contracts.RentResponse;
+import com.cenfotec.cenfoteca.contracts.UsersRequest;
 import com.cenfotec.cenfoteca.ejb.Alquiler;
 import com.cenfotec.cenfoteca.services.RentServiceInterface;
 import com.cenfotec.cenfoteca.services.TipoAlquilerServiceInterface;
@@ -42,38 +43,32 @@ public class RentController {
 	
 	
 	@RequestMapping(value ="/save", method = RequestMethod.POST)
-	public RentResponse create(
-			@RequestParam("idAlquiler") int idAlquiler,
-			@RequestParam("file") MultipartFile file,
-			@RequestParam("idTipoAlquiler") int idTipoAlquiler,
-			@RequestParam("name") String name,
-			@RequestParam("description") String description){	
+	public RentResponse create(@RequestBody RentRequest rr){	
 		
 		RentResponse rs = new RentResponse();
 		Alquiler alquiler = new Alquiler();
 		Boolean state;
 		
-		String resultFileName = Utils.writeToFile(file,servletContext);
+		//String resultFileName = Utils.writeToFile(file,servletContext);
 	
-	if(!resultFileName.equals("")){
 		
-		if(idAlquiler <= -1){
+		if(rr.getAlquiler().getIdAlquiler() <= -1){
 			
-			alquiler.setName(name);
-			alquiler.setDescription(description);
-			alquiler.setImage(resultFileName);
-			alquiler.setTipoAlquiler(tipoAlquilerService.getTipoAlquilerById(idTipoAlquiler));
+			alquiler.setName(rr.getAlquiler().getName());
+			alquiler.setDescription(rr.getAlquiler().getDescription());
+			alquiler.setImage(rr.getAlquiler().getUrl());
+			alquiler.setTipoAlquiler(tipoAlquilerService.getTipoAlquilerById(rr.getAlquiler().getIdTipo()));
 			
 			state = rentService.saveRent(alquiler);
 			
 				
 		}else{
 			
-			alquiler.setIdAlquiler(idAlquiler);
-			alquiler.setName(name);
-			alquiler.setDescription(description);
-			alquiler.setImage(resultFileName);
-			alquiler.setTipoAlquiler(tipoAlquilerService.getTipoAlquilerById(idTipoAlquiler));
+			alquiler.setIdAlquiler(rr.getAlquiler().getIdAlquiler());
+			alquiler.setName(rr.getAlquiler().getName());
+			alquiler.setDescription(rr.getAlquiler().getDescription());
+			alquiler.setImage(rr.getAlquiler().getUrl());
+			alquiler.setTipoAlquiler(tipoAlquilerService.getTipoAlquilerById(rr.getAlquiler().getIdTipo()));
 			
 			state = rentService.editRent(alquiler);		
 		}
@@ -85,13 +80,12 @@ public class RentController {
 				rs.setCode(409);
 				rs.setErrorMessage("create/edit conflict");
 			}	
-		}
 		
 		return rs;		
 	}
 	
 	
-	@RequestMapping(value ="/delete", method = RequestMethod.DELETE)	
+	@RequestMapping(value ="/delete", method = RequestMethod.POST)	
 	public void delete(@RequestBody  RentRequest rq){
 		
 		RentResponse response = new RentResponse();

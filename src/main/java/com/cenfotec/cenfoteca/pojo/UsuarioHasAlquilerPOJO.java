@@ -10,6 +10,10 @@ public class UsuarioHasAlquilerPOJO {
 
 	private UsuarioPOJO usuario;
 	
+	private int idUsuario;
+	
+	private int idItem;
+	
 	private boolean estado_renta;
 
 	public UsuarioHasAlquilerPOJO() {
@@ -52,6 +56,26 @@ public class UsuarioHasAlquilerPOJO {
 
 	public void setEstado_renta(boolean estado_renta) {
 		this.estado_renta = estado_renta;
+	}
+
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+
+	public int getIdItem() {
+		return idItem;
+	}
+
+
+	public void setIdItem(int idItem) {
+		this.idItem = idItem;
 	}
 
 

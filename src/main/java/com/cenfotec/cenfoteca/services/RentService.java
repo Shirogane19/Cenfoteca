@@ -29,7 +29,10 @@ public class RentService implements RentServiceInterface{
 		alquileres.stream().forEach(al -> {
 			
 			AlquilerPOJO dto = new AlquilerPOJO();
-			BeanUtils.copyProperties(al, dto);
+			dto.setIdAlquiler(al.getIdAlquiler());
+			dto.setName(al.getName());
+			dto.setDescription(al.getDescription());
+			dto.setTipo(al.getTipoAlquiler().getName());
 			dtos.add(dto);				
 		});
 			

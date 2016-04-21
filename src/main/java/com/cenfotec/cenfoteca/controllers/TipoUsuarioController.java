@@ -1,6 +1,5 @@
 package com.cenfotec.cenfoteca.controllers;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cenfotec.cenfoteca.contracts.TipoUsuarioResponse;
 import com.cenfotec.cenfoteca.contracts.UserTypeRequest;
-import com.cenfotec.cenfoteca.services.TipoUsuarioService;
 import com.cenfotec.cenfoteca.services.TipoUsuarioServiceInterface;
 
 
@@ -25,7 +23,6 @@ public class TipoUsuarioController {
 	
 
 	@Autowired private TipoUsuarioServiceInterface tipoUsuarioService;
-	@Autowired private HttpServletRequest request;
 	
 	@RequestMapping(value ="/getAll", method = RequestMethod.POST)
 	public TipoUsuarioResponse getAll(){	

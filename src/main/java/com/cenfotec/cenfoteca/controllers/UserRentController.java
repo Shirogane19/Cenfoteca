@@ -46,10 +46,10 @@ public class UserRentController {
 	}
 	
 	@RequestMapping(value ="/returnItem", method = RequestMethod.POST)
-	public UserRentResponse returnItem(@RequestParam("idAlquiler") int idAlquiler){	
+	public UserRentResponse returnItem(@RequestBody UserRentRequest ur){	
 		
 		UserRentResponse us = new UserRentResponse();
-		Boolean state = userRentService.deleteUserRent(idAlquiler);
+		Boolean state = userRentService.deleteUserRent(ur.getUserRent().getIdUsuarioHasAlquiler());
 	
 		if(state){
 			us.setCode(200);

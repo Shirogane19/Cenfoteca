@@ -6,6 +6,9 @@ public class AlquilerPOJO{
 	private String name;
 	private String description;
 	private String image;
+	private int idTipo;
+	private String url;
+	private String tipo;
 	
 	public AlquilerPOJO() {
 		super();
@@ -42,6 +45,30 @@ public class AlquilerPOJO{
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public int getIdTipo() {
+		return idTipo;
+	}
+
+	public void setIdTipo(int idTipo) {
+		this.idTipo = idTipo;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 }
